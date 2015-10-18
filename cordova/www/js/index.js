@@ -38,7 +38,30 @@ var app = {
     // Update DOM on a Received Event
     receivedEvent: function(id) {
         console.log('Received Event: ' + id);
+        mainFunction();
     }
 };
 
 app.initialize();
+
+function mainFunction (){
+    // https://developer.mozilla.org/en-US/docs/AJAX/Getting_Started
+    var httpRequest = new XMLHttpRequest();
+    if (!httpRequest) {
+        console.log('Cannot create an XMLHTTP instance');
+        return false;
+    }
+    httpRequest.onreadystatechange = handleResponse;
+    httpRequest.open('GET', "http://localhost:9000/data/Lazca10.html");
+    httpRequest.send();
+
+    function handleResponse() {
+        if (httpRequest.readyState === XMLHttpRequest.DONE) {
+            if (httpRequest.status === 200) {
+                document.getElementById('#definition').innerHTML = httpRequest.responseText;
+            } else {
+                console.log('There was a problem with the request.',httpRequest);
+            }
+        }
+    }
+}
