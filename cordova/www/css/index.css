@@ -27,16 +27,44 @@ body {
     font-family:'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
 }
 
-/* Portrait layout (default) */
 .app {
+	max-width: 800px;
+	height: 900px;
+	padding: 4px 5px 0 5px;
+	margin: 0 auto;
+	background-color:#4CAF50;
+    background-image:linear-gradient(top, #388E3C 0%, #4CAF50 51%);
+    background-image:-webkit-linear-gradient(top, #388E3C 0%, #4CAF50 51%);
+    background-image:-ms-linear-gradient(top, #388E3C 0%, #4CAF50 51%);
+    background-image:-webkit-gradient(
+        linear,
+        left top,
+        left bottom,
+        color-stop(0, #388E3C),
+        color-stop(0.51, #4CAF50)
+    );
+}
+
+#search{
+	width: 100%;
+	box-sizing: border-box;
+	padding: 0.5em;
+	display: block;
+	font-size: 1.2em;
+}
+
+#definition{
+	background: white;
+	margin: 5px 0;
+	padding: 5px 4px;
+}
+
+#definition > p{
+	margin: 0;
 }
 
 /* Landscape layout (with min-width) */
 @media screen and (min-aspect-ratio: 1/1) and (min-width:400px) {
     .app {
     }
-}
-
-#search{
-	margin: 5px;
 }
