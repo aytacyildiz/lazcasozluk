@@ -20,6 +20,10 @@
     -webkit-tap-highlight-color: rgba(0,0,0,0); /* make transparent link selection, adjust last value opacity 0 to 1.0 */
 }
 
+html {
+    background-color:#4CAF50;
+}
+
 body {
     -webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
     -webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
@@ -28,21 +32,9 @@ body {
 }
 
 .app {
-	max-width: 800px;
-	height: 900px;
-	padding: 4px 5px 0 5px;
-	margin: 0 auto;
-	background-color:#4CAF50;
-    background-image:linear-gradient(top, #388E3C 0%, #4CAF50 51%);
-    background-image:-webkit-linear-gradient(top, #388E3C 0%, #4CAF50 51%);
-    background-image:-ms-linear-gradient(top, #388E3C 0%, #4CAF50 51%);
-    background-image:-webkit-gradient(
-        linear,
-        left top,
-        left bottom,
-        color-stop(0, #388E3C),
-        color-stop(0.51, #4CAF50)
-    );
+    max-width: 800px;
+    padding: 4px 5px 0 5px;
+    margin: 0 auto;
 }
 
 #search{
