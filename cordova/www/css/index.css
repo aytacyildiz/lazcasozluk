@@ -48,11 +48,17 @@ body {
 #definition{
 	background: white;
 	margin: 5px 0;
-	padding: 5px 4px;
+	padding: 10px 8px;
+    display: none;
 }
 
 #definition > p{
 	margin: 0;
+}
+
+#definition > em{
+    display: block;
+    margin-bottom: 2pt;
 }
 
 /* Landscape layout (with min-width) */

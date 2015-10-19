@@ -35,7 +35,6 @@ var app = {
     onDeviceReady: function() {
         app.receivedEvent('deviceready');
     },
-    // Update DOM on a Received Event
     receivedEvent: function(id) {
         console.log('Received Event: ' + id);
         mainFunction();
@@ -45,16 +44,37 @@ var app = {
 app.initialize();
 
 function mainFunction (){
+    var searchInput = document.getElementById("search");
+    var definition = document.getElementById("definition");
+    var lwords;
+    // event handlers
+    document.getElementById("searchButton").addEventListener("click", function(e){
+        console.log(e);
+        // find the index
+        var text = searchInput.value;
+        if(lwords == null) return;
+        for (var i = 0; i < lwords.wordlist.length - 1; i++) { // -1 for "END"
+            if(text == lwords.wordlist[i]){
+                makeHTTPRequest("../data/Lazca"+i+".html",displayDefinition);
+                break;
+            } 
+        };
+    });
+    function displayDefinition(responseText){
+        definition.setAttribute("style", "display:block;");
+        definition.innerHTML = responseText;
+    }
+    // 
     makeHTTPRequest("../data/datalistLazca.json",handleLazcaWordList);
     // 
     function handleLazcaWordList (responseText) {
-        var words = JSON.parse(responseText);
-        for (var i = 0; i < words.wordlist.length - 1; i++) { // -1 for "END"
+        lwords = JSON.parse(responseText);
+        for (var i = 0; i < lwords.wordlist.length - 1; i++) { // -1 for "END"
             var option = document.createElement("OPTION");
-            option.setAttribute("value",words.wordlist[i]);
+            option.setAttribute("value",lwords.wordlist[i]);
             document.getElementById("lazcaWords").appendChild(option);
         };
-        console.log("LazcaWordList created",words.wordlist.length);
+        console.log("LazcaWordList created",lwords.wordlist.length);
     }
     function makeHTTPRequest(URL, handler){
         // https://developer.mozilla.org/en-US/docs/AJAX/Getting_Started
