@@ -52,13 +52,13 @@ function mainFunction (){
         return false;
     }
     httpRequest.onreadystatechange = handleResponse;
-    httpRequest.open('GET', "http://localhost:9000/data/Lazca10.html");
+    httpRequest.open('GET', "../data/demo.json");
     httpRequest.send();
-
     function handleResponse() {
         if (httpRequest.readyState === XMLHttpRequest.DONE) {
             if (httpRequest.status === 200) {
-                document.getElementById('#definition').innerHTML = httpRequest.responseText;
+                // document.getElementById('#definition').innerHTML = httpRequest.responseText;
+                console.log(httpRequest.responseText);
             } else {
                 console.log('There was a problem with the request.',httpRequest);
             }
