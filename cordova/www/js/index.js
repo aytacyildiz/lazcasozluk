@@ -45,22 +45,35 @@ var app = {
 app.initialize();
 
 function mainFunction (){
-    // https://developer.mozilla.org/en-US/docs/AJAX/Getting_Started
-    var httpRequest = new XMLHttpRequest();
-    if (!httpRequest) {
-        console.log('Cannot create an XMLHTTP instance');
-        return false;
+    makeHTTPRequest("../data/datalistLazca.json",handleLazcaWordList);
+    // 
+    function handleLazcaWordList (responseText) {
+        var words = JSON.parse(responseText);
+        for (var i = 0; i < words.wordlist.length - 1; i++) { // -1 for "END"
+            var option = document.createElement("OPTION");
+            option.setAttribute("value",words.wordlist[i]);
+            document.getElementById("lazcaWords").appendChild(option);
+        };
+        console.log("LazcaWordList created",words.wordlist.length);
     }
-    httpRequest.onreadystatechange = handleResponse;
-    httpRequest.open('GET', "../data/demo.json");
-    httpRequest.send();
-    function handleResponse() {
-        if (httpRequest.readyState === XMLHttpRequest.DONE) {
-            if (httpRequest.status === 200) {
-                // document.getElementById('#definition').innerHTML = httpRequest.responseText;
-                console.log(httpRequest.responseText);
-            } else {
-                console.log('There was a problem with the request.',httpRequest);
+    function makeHTTPRequest(URL, handler){
+        // https://developer.mozilla.org/en-US/docs/AJAX/Getting_Started
+        var httpRequest = new XMLHttpRequest();
+        if (!httpRequest) {
+            console.log('Cannot create an XMLHTTP instance');
+            return false;
+        }
+        httpRequest.onreadystatechange = handleResponse;
+        httpRequest.open('GET', URL);
+        httpRequest.send();
+        function handleResponse() {
+            if (httpRequest.readyState === XMLHttpRequest.DONE) {
+                if (httpRequest.status === 200) {
+                    console.log("HTTP request: success");
+                    handler(httpRequest.responseText);
+                } else {
+                    console.log('There was a problem with the request.',httpRequest);
+                }
             }
         }
     }
