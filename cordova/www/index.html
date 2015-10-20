@@ -41,9 +41,7 @@
         <div class="app">
             <div>
                 <!-- Support for datalist http://caniuse.com/#feat=datalist -->
-                <div id="bar">
-                    <input id="searchButton" type="button" value="ARA">
-                    <input id="switcher" type="button" value="Türkçe-Lazca">
+                <div class="bar">
                     <div id="letterButtons">
                         <input class="letter" type="button" value="ç’">
                         <input class="letter" type="button" value="gy">
@@ -57,9 +55,12 @@
                         <input class="letter" type="button" value="3’">
                     </div>
                 </div>
-                <input id="search" list="lazcaWords">
-                <datalist id="lazcaWords"></datalist>
-                <datalist id="turkceWords"></datalist>
+                <input id="search" list="words">
+                <datalist id="words"></datalist>
+                <div class="bar">
+                    <input id="searchButton" type="button" value="ARA">
+                    <input id="switcher" type="button" value="Lazca-Türkçe">
+                </div>
             </div>
             <div id="definition"></div>
         </div>

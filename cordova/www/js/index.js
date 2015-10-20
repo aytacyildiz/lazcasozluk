@@ -47,36 +47,49 @@ function mainFunction (){
     // variables
     var searchInput = document.getElementById("search");
     var definition = document.getElementById("definition");
+    var switcherButton = document.getElementById("switcher");
+    var wordsDatalist = document.getElementById("words");
     var lwords,twords;
-    var searchText,switcherButton;
+    var searchText;
     var lwordsCount = 0,twordsCount = 0;
-    var turkceWordsDatalist = document.getElementById("turkceWords");
-    var lazcaWordsDatalist = document.getElementById("lazcaWords");
     // event handlers
     document.getElementById("searchButton").addEventListener("click", function(e){
         // find the index
         searchText = searchInput.value;
-        if(lwords == null) return;
-        for (var i = 0; i < lwords.wordlist.length - 1; i++) { // -1 for "END"
-            if(searchText == lwords.wordlist[i]){
-                makeHTTPRequest("../data/Lazca"+i+".html",displayDefinition);
-                break;
-            } 
-        };
+        if(lwords != null && switcherButton.value=="Lazca-Türkçe"){
+            for (var i = 0; i < lwordsCount - 1; i++) { // -1 for "END"
+                if(searchText == lwords.wordlist[i]){
+                    makeHTTPRequest("../data/Lazca"+i+".html",displayDefinition);
+                    break;
+                }
+                displayDefinition("Sonuç bulunamadi... :(");
+            };
+        }
+        if(twords != null && switcherButton.value=="Türkçe-Lazca"){
+            for (var i = 0; i < twordsCount - 1; i++) { // -1 for "END"
+                if(searchText == twords.wordlist[i]){
+                    makeHTTPRequest("../data/Turkce"+i+".html",displayDefinition);
+                    break;
+                }
+                displayDefinition("Sonuç bulunamadi... :(");
+            };
+        }
     });
     document.getElementById("letterButtons").addEventListener("click", function(e){
         searchInput.value += e.target.value;
     });
-    document.getElementById("switcher").addEventListener("click", function(e){
-        switcherButton = e.target;
-        if(switcherButton.value == "Türkçe-Lazca"){
-            switcherButton.value = "Lazca-Türkçe";
-            if(twords==null) makeHTTPRequest("../data/datalistTurkce.json",handleTurkceWordList);
-            searchInput.setAttribute("list", "turkceWords");
+    switcherButton.addEventListener("click", function(e){
+        if(switcherButton.value == "Lazca-Türkçe"){
+            switcherButton.value = "Türkçe-Lazca";
+            if(twords==null){
+                makeHTTPRequest("../data/datalistTurkce.json",handleTurkceWordList);  
+                return;
+            }
+            insertWordsToDatalist(twords,twordsCount);
         }
         else{
-            switcherButton.value = "Türkçe-Lazca";
-            searchInput.setAttribute("list", "lazcaWords");   
+            switcherButton.value = "Lazca-Türkçe";
+            insertWordsToDatalist(lwords,lwordsCount);
         }
     });
     // functions
@@ -84,24 +97,28 @@ function mainFunction (){
         twords = JSON.parse(responseText);
         if(twords==null || lwords.wordlist==null) console.log("can't parse twords");
         twordsCount = lwords.wordlist.length;
-        for (var i = 0; i < twordsCount - 1; i++) { // -1 for "END"
-            var option = document.createElement("OPTION");
-            option.setAttribute("value",lwords.wordlist[i]);
-            turkceWordsDatalist.appendChild(option);
-        };
-        console.log("TurkceWordList created",twordsCount);
+        insertWordsToDatalist(twords,twordsCount);
     }
     // load LazcaWordList without switcher
     makeHTTPRequest("../data/datalistLazca.json",handleLazcaWordList);
     function handleLazcaWordList (responseText) {
         lwords = JSON.parse(responseText);
+        if(lwords==null || lwords.wordlist==null) console.log("can't parse lwords");
         lwordsCount = lwords.wordlist.length;
-        for (var i = 0; i < lwordsCount - 1; i++) { // -1 for "END"
+        insertWordsToDatalist(lwords,lwordsCount);
+    }
+    function insertWordsToDatalist(words,wordsCount){
+        // flush
+        while(wordsDatalist.firstChild){
+            wordsDatalist.removeChild(wordsDatalist.firstChild);
+        }
+        // insert
+        for (var i = 0; i < wordsCount - 1; i++) { // -1 for "END"
             var option = document.createElement("OPTION");
-            option.setAttribute("value",lwords.wordlist[i]);
-            lazcaWordsDatalist.appendChild(option);
+            option.setAttribute("value",words.wordlist[i]);
+            wordsDatalist.appendChild(option);
         };
-        console.log("LazcaWordList created",lwordsCount);
+        console.log(wordsCount+" word inserted to datalist");
     }
     function displayDefinition(responseText){
         definition.setAttribute("style", "display:block;");

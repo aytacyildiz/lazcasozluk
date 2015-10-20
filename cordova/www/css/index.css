@@ -61,7 +61,7 @@ body {
     margin-bottom: 2pt;
 }
 
-#letterButtons{
+.bar input{
     display: inline-block;
 }
 
