@@ -64,6 +64,9 @@ function mainFunction (){
         definition.setAttribute("style", "display:block;");
         definition.innerHTML = responseText;
     }
+    document.getElementById("letterButtons").addEventListener("click", function(e){
+        searchInput.value += e.target.value;
+    });
     // 
     makeHTTPRequest("../data/datalistLazca.json",handleLazcaWordList);
     // 

@@ -56,9 +56,13 @@ body {
 	margin: 0;
 }
 
-#definition > em{
+.source{
     display: block;
     margin-bottom: 2pt;
+}
+
+#letterButtons{
+    display: inline-block;
 }
 
 /* Landscape layout (with min-width) */
