@@ -3,5 +3,5 @@
 
 ## Kaynak koddan çalıştırma
 Çalımasi için Cordova CLI ile derlenmesi gereklidir
-Ayrıca cordova/www/data klasöründe sözlük verilerinin
-bulunması gereklidir
+Ayrıca cordova/www/data klasöründe [sözlük verilerinin](https://github.com/aytacyildiz/lazcasozlukfetcher)
+bulunması gereklidir 
