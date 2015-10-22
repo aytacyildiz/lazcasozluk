@@ -49,31 +49,31 @@ function mainFunction (){
     var definition = document.getElementById("definition");
     var switcherButton = document.getElementById("switcher");
     var wordsDatalist = document.getElementById("words");
-    var lwords,twords;
+    var lwords = null,twords = null;
     var searchText;
     var lwordsCount = 0,twordsCount = 0;
     // event handlers
     document.getElementById("searchButton").addEventListener("click", function(e){
+        e.preventDefault();
         // find the index
         searchText = searchInput.value;
         if(lwords !== null && switcherButton.value=="Lazca-Türkçe"){
             for (var i = 0; i < lwordsCount - 1; i++) { // -1 for "END"
                 if(searchText == lwords.wordlist[i]){
-                    makeHTTPRequest("../data/Lazca"+i+".html",displayDefinition);
-                    break;
+                    makeHTTPRequest("../data/Lazca_"+i+".html",displayDefinition);
+                    return;
                 }
-                displayDefinition("Sonuç bulunamadi... :(");
             }
         }
-        if(twords !== null && switcherButton.value=="Türkçe-Lazca"){
+        else if(twords !== null && switcherButton.value=="Türkçe-Lazca"){
             for (var j = 0; j < twordsCount - 1; j++) { // -1 for "END"
                 if(searchText == twords.wordlist[j]){
-                    makeHTTPRequest("../data/Turkce"+j+".html",displayDefinition);
-                    break;
+                    makeHTTPRequest("../data/Turkce_"+j+".html",displayDefinition);
+                    return;
                 }
-                displayDefinition("Sonuç bulunamadi... :(");
             }
         }
+        displayDefinition("Sonuç bulunamadi... :(");
     });
     document.getElementById("letterButtons").addEventListener("click", function(e){
         searchInput.value += e.target.value;
@@ -116,6 +116,7 @@ function mainFunction (){
         for (var i = 0; i < wordsCount - 1; i++) { // -1 for "END"
             var option = document.createElement("OPTION");
             option.setAttribute("value",words.wordlist[i]);
+            option.setAttribute("data-index", i);
             wordsDatalist.appendChild(option);
         }
         console.log(wordsCount+" word inserted to datalist");
@@ -137,7 +138,7 @@ function mainFunction (){
         function handleResponse() {
             if (httpRequest.readyState === XMLHttpRequest.DONE) {
                 if (httpRequest.status === 200) {
-                    console.log("HTTP request: success");
+                    console.log("HTTP request: success",URL);
                     handler(httpRequest.responseText);
                 } else {
                     console.log('There was a problem with the request.',httpRequest);
