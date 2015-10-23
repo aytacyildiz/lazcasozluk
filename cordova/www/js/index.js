@@ -57,13 +57,15 @@ function mainFunction (){
         e.preventDefault();
         // find the index
         searchText = searchInput.value;
-        if(lwords !== null && switcherButton.value=="Lazca-Türkçe"){
+        if(searchText==="") return;
+        else if(lwords !== null && switcherButton.value=="Lazca-Türkçe"){
             for (var i = 0; i < lwordsCount - 1; i++) { // -1 for "END"
                 if(searchText == lwords.wordlist[i]){
                     makeHTTPRequest("../data/Lazca_"+i+".html",displayDefinition);
                     return;
                 }
             }
+            deepSearch(searchText,true);
         }
         else if(twords !== null && switcherButton.value=="Türkçe-Lazca"){
             for (var j = 0; j < twordsCount - 1; j++) { // -1 for "END"
@@ -72,10 +74,10 @@ function mainFunction (){
                     return;
                 }
             }
+            deepSearch(searchText,false);
         }
-        displayDefinition("Sonuç bulunamadi... :(");
     });
-    document.getElementById("letterButtons").addEventListener("click", function(e){
+    document.getElementById("letterBar").addEventListener("click", function(e){
         searchInput.value += e.target.value;
     });
     switcherButton.addEventListener("click", function(e){
@@ -123,7 +125,17 @@ function mainFunction (){
     }
     function displayDefinition(responseText){
         definition.setAttribute("style", "display:block;");
+        // flush
+        while(definition.firstChild){
+            definition.removeChild(definition.firstChild);
+        }
+        // insert
         definition.innerHTML = responseText;
+    }
+    function displayMDefinition(responseText){
+        definition.setAttribute("style", "display:block;");
+        // insert
+        definition.innerHTML += responseText + "<br>";
     }
     function makeHTTPRequest(URL, handler){
         // https://developer.mozilla.org/en-US/docs/AJAX/Getting_Started
@@ -145,5 +157,25 @@ function mainFunction (){
                 }
             }
         }
+    }
+    function deepSearch(stext,language){
+        // language true: Lazca false: Turkce
+        console.log('deep search: '+stext);
+        stext = stext.trim();
+        var swords = (language) ? lwords : twords;
+        var scounter = (language) ? lwordsCount : twordsCount;
+        var re = new RegExp("\(^"+stext+"| "+stext+")","gi");
+        console.log(re.toString());
+        for (var i = 0; i < scounter; i++) {
+            if(re.test(swords.wordlist[i])){
+                if(language) makeHTTPRequest("../data/Lazca_"+i+".html",displayMDefinition);
+                else makeHTTPRequest("../data/Turkce_"+i+".html",displayMDefinition);
+                return;
+            }
+        }
+        displayDefinition("Bulunamadı... :(");
+    }
+    function mastarEki(){
+        
     }
 }

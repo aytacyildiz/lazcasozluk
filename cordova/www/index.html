@@ -39,30 +39,39 @@
     </head>
     <body>
         <div class="app">
-            <div>
+            <div id="head">
                 <!-- Support for datalist http://caniuse.com/#feat=datalist -->
-                <div class="bar">
-                    <div id="letterButtons">
-                        <input class="letter" type="button" value="ç’">
-                        <input class="letter" type="button" value="gy">
-                        <input class="letter" type="button" value="k’">
-                        <input class="letter" type="button" value="ky">
-                        <input class="letter" type="button" value="ky’">
-                        <input class="letter" type="button" value="p’">
-                        <input class="letter" type="button" value="t’">
-                        <input class="letter" type="button" value="x’">
-                        <input class="letter" type="button" value="z*">
-                        <input class="letter" type="button" value="3’">
-                    </div>
+                <div id="letterBar">
+                    <input class="letter button" type="button" value="ç’">
+                    <input class="letter button" type="button" value="gy">
+                    <input class="letter button" type="button" value="k’">
+                    <input class="letter button" type="button" value="ky">
+                    <input class="letter button" type="button" value="ky’">
+                    <input class="letter button" type="button" value="p’">
+                    <input class="letter button" type="button" value="t’">
+                    <input class="letter button" type="button" value="x’">
+                    <input class="letter button" type="button" value="z*">
+                    <input class="letter button" type="button" value="3’">
+                    <div style="clear:both;"></div>
                 </div>
-                <input id="search" list="words">
+                <input id="search" list="words" placeholder="Kelime...">
                 <datalist id="words"></datalist>
-                <div class="bar">
-                    <input id="searchButton" type="button" value="ARA">
-                    <input id="switcher" type="button" value="Lazca-Türkçe">
+                <div class="searchBar">
+                    <input id="searchButton" class="searchBarButton button" type="button" value="KELİMEYİ ARA">
+                    <input id="switcher" class="searchBarButton button" type="button" value="Lazca-Türkçe">
+                    <div style="clear:both;"></div>
                 </div>
             </div>
             <div id="definition"></div>
+            <div id="bottom">
+                <div id="bottomButtons">
+                    <input id="dinfoButton" class="infoButton button" type="button" value="+ Sözlük Hakkında Bilgi">
+                    <input id="sinfoButton" class="infoButton button" type="button" value="+ Yazılım Hakkında Bilgi">
+                    <div style="clear:both;"></div>
+                </div>
+                <div id="dinfo"></div>
+                <div id="sinfo"></div>
+            </div>
         </div>
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/index.js"></script>

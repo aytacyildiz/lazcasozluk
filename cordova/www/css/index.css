@@ -18,7 +18,7 @@
  */
 
 html {
-    background-color:#4CAF50;
+    background-color: #4CAF50;
 }
 
 body {
@@ -34,13 +34,34 @@ body {
     margin: 0 auto;
 }
 
-#search{
-    width: 100%;
-    box-sizing: border-box;
-    padding: 0.5em;
+.letter{
+    margin: 0 1% 0 1%;
+    width: 8%;
     display: block;
-    font-size: 1.2em;
+    float: right;
+    box-sizing: border-box;
+}
+
+#search{
+    font-size: 1.5em;
     border: 0;
+    margin: 10px 0 10px 0;
+    padding: 0.8em 0.5em;
+    width: 100%;
+    display: block;
+    box-sizing: border-box;
+}
+
+.searchBar{
+    margin-bottom: 10px; 
+}
+
+.searchBarButton{
+    margin: 0 5%;
+    width: 40%;
+    display: block;
+    float: left;
+    box-sizing: border-box;
 }
 
 #definition{
@@ -59,8 +80,38 @@ body {
     margin-bottom: 2pt;
 }
 
-.bar input{
+#bottom{
+    margin: 200px 0 0 0;
+}
+
+#bottomButtons{
+    text-align: center;
+}
+
+.infoButton{
+    font-size: 0.9em;
     display: inline-block;
+    width: 30%;
+}
+
+#dinfo, #sinfo{
+    background: white;
+    margin: 0;
+    padding: 10px 8px;
+    display: none;
+}
+
+.button{
+    padding: 1em;
+    border: 0;
+    border-bottom: 2px solid white;
+    color: white;
+    background-color: rgba(0,0,0,0);
+}
+
+.button:active{
+    background-color: white;
+    color: black;
 }
 
 * {
