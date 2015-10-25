@@ -55,26 +55,13 @@ function mainFunction (){
     // event handlers
     document.getElementById("searchButton").addEventListener("click", function(e){
         e.preventDefault();
-        // find the index
         searchText = searchInput.value;
-        if(searchText==="") return;
-        else if(lwords !== null && switcherButton.value=="Lazca-Türkçe"){
-            for (var i = 0; i < lwordsCount - 1; i++) { // -1 for "END"
-                if(searchText == lwords.wordlist[i]){
-                    makeHTTPRequest("../data/Lazca_"+i+".html",displayDefinition);
-                    return;
-                }
-            }
-            deepSearch(searchText,true);
-        }
-        else if(twords !== null && switcherButton.value=="Türkçe-Lazca"){
-            for (var j = 0; j < twordsCount - 1; j++) { // -1 for "END"
-                if(searchText == twords.wordlist[j]){
-                    makeHTTPRequest("../data/Turkce_"+j+".html",displayDefinition);
-                    return;
-                }
-            }
-            deepSearch(searchText,false);
+        search(searchText);
+    });
+    searchInput.addEventListener("keydown", function(e){
+        if(e.keyCode == 13){
+            searchText = searchInput.value;
+            search(searchText);
         }
     });
     document.getElementById("letterBar").addEventListener("click", function(e){
@@ -98,7 +85,7 @@ function mainFunction (){
     function handleTurkceWordList(responseText){
         twords = JSON.parse(responseText);
         if(twords===null || lwords.wordlist===null) console.log("can't parse twords");
-        twordsCount = lwords.wordlist.length;
+        twordsCount = twords.wordlist.length;
         insertWordsToDatalist(twords,twordsCount);
     }
     // load LazcaWordList without switcher
@@ -158,6 +145,28 @@ function mainFunction (){
             }
         }
     }
+    function search(searchText){
+        // find the index
+        if(searchText==="") return;
+        else if(lwords !== null && switcherButton.value=="Lazca-Türkçe"){
+            for (var i = 0; i < lwordsCount - 1; i++) { // -1 for "END"
+                if(searchText == lwords.wordlist[i]){
+                    makeHTTPRequest("../data/Lazca_"+i+".html",displayDefinition);
+                    return;
+                }
+            }
+            deepSearch(searchText,true);
+        }
+        else if(twords !== null && switcherButton.value=="Türkçe-Lazca"){
+            for (var j = 0; j < twordsCount - 1; j++) { // -1 for "END"
+                if(searchText == twords.wordlist[j]){
+                    makeHTTPRequest("../data/Turkce_"+j+".html",displayDefinition);
+                    return;
+                }
+            }
+            deepSearch(searchText,false);
+        }
+    }
     function deepSearch(stext,language){
         // language true: Lazca false: Turkce
         console.log('deep search: '+stext);
@@ -168,6 +177,7 @@ function mainFunction (){
         console.log(re.toString());
         for (var i = 0; i < scounter; i++) {
             if(re.test(swords.wordlist[i])){
+                displayDefinition(""); // flush
                 if(language) makeHTTPRequest("../data/Lazca_"+i+".html",displayMDefinition);
                 else makeHTTPRequest("../data/Turkce_"+i+".html",displayMDefinition);
                 return;

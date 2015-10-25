@@ -17,6 +17,10 @@
  * under the License.
  */
 
+/*
+    General
+*/
+
 html {
     background-color: #4CAF50;
 }
@@ -24,7 +28,11 @@ html {
 body {
     -webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
     -webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
+    -ms-text-size-adjust: none;
     -webkit-user-select: text;                  /* prevent copy paste, to allow, change 'none' to 'text' */
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
     font-family:'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
 }
 
@@ -34,12 +42,18 @@ body {
     margin: 0 auto;
 }
 
+/*
+    Head
+*/
+
 .letter{
-    margin: 0 1% 0 1%;
     width: 8%;
-    display: block;
-    float: right;
+    display: inline-block;
     box-sizing: border-box;
+}
+
+#letterBar{
+    text-align: center;
 }
 
 #search{
@@ -52,17 +66,24 @@ body {
     box-sizing: border-box;
 }
 
-.searchBar{
+#searchBar{
     margin-bottom: 10px; 
+    text-align: center;
 }
 
 .searchBarButton{
-    margin: 0 5%;
-    width: 40%;
-    display: block;
-    float: left;
+    margin: 0 10%;
+    display: inline-block;
     box-sizing: border-box;
 }
+
+#searchButton, #switcher{
+    padding: 1em 6%;
+}
+
+/*
+    Definition
+*/
 
 #definition{
     background: white;
@@ -80,6 +101,10 @@ body {
     margin-bottom: 2pt;
 }
 
+/*
+    Bottom
+*/
+
 #bottom{
     margin: 200px 0 0 0;
 }
@@ -91,7 +116,7 @@ body {
 .infoButton{
     font-size: 0.9em;
     display: inline-block;
-    width: 30%;
+    margin: 0 2%;
 }
 
 #dinfo, #sinfo{
@@ -114,6 +139,7 @@ body {
     color: black;
 }
 
+/* slow */
 * {
     -webkit-tap-highlight-color: rgba(0,0,0,0); /* make transparent link selection, adjust last value opacity 0 to 1.0 */
 }
