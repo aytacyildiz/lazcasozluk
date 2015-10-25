@@ -52,6 +52,7 @@ function mainFunction (){
     var lwords = null,twords = null;
     var searchText;
     var lwordsCount = 0,twordsCount = 0;
+    var jsForDataList = false;
     // event handlers
     document.getElementById("searchButton").addEventListener("click", function(e){
         e.preventDefault();
@@ -107,6 +108,26 @@ function mainFunction (){
             option.setAttribute("value",words.wordlist[i]);
             option.setAttribute("data-index", i);
             wordsDatalist.appendChild(option);
+        }
+        if(!Modernizr.datalistelem){
+            var options = {
+                    minLength: 2,
+                    delay: 500,
+                    source: words.wordlist
+                };
+            console.log("Modernizr datalistelem detected");
+            if(jsForDataList){
+                $(searchInput).autocomplete(options);
+            }
+            else{
+                loadJS("js/jquery-2.1.4.min.js",function(){
+                    loadJS("js/jquery-ui.min.js",function(){
+                        $(searchInput).autocomplete(options);
+                        loadCSS("css/jquery-ui-all.min.css",document.head);
+                        jsForDataList = true;
+                    },document.body);
+                },document.body);
+            }
         }
         console.log(wordsCount+" word inserted to datalist");
     }
@@ -185,7 +206,19 @@ function mainFunction (){
         }
         displayDefinition("Bulunamadı... :(");
     }
-    function mastarEki(){
-        
+    // http://stackoverflow.com/a/31374433
+    function loadJS(url, implementationCode, location){
+        var scriptTag = document.createElement('script');
+        scriptTag.src = url;
+        scriptTag.onload = implementationCode;
+        scriptTag.onreadystatechange = implementationCode;
+        location.appendChild(scriptTag);
+    }
+    function loadCSS(url, location){
+        var scriptTag = document.createElement('link');
+        scriptTag.setAttribute("rel","stylesheet");
+        scriptTag.setAttribute("type","text/css");
+        scriptTag.setAttribute("href",url);
+        location.appendChild(scriptTag);
     }
 }
