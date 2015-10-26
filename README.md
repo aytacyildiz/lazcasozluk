@@ -7,6 +7,8 @@ Bu ugulamadaki amacım http://ayla7.free.fr/laz/ adresindeki verileri kullanarak
 
 ![App Demo](media/appdemo.400.gif)
 
+Daha büyük boyuttaki: [video](media/appdemo.webm?raw=true)
+
 ### Kaynak koddan çalıştırma
 Çalımasi için Cordova CLI ile derlenmesi gereklidir.
 Ayrıca cordova/www/data klasöründe [sözlük verilerinin](https://github.com/aytacyildiz/lazcasozlukfetcher)
