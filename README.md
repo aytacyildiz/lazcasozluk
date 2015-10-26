@@ -3,7 +3,8 @@
 
 Bu ugulamadaki amacım http://ayla7.free.fr/laz/ adresindeki verileri kullanarak daha kolay erişebilir sözlük oluşturmaktır.
 
-Projenin şu anki çalışan hali:
+**Projenin şu anki çalışan hali:**
+
 ![App Demo](media/appdemo.400.gif)
 
 ### Kaynak koddan çalıştırma
