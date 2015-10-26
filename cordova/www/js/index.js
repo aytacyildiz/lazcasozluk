@@ -49,9 +49,12 @@ function mainFunction (){
     var definition = document.getElementById("definition");
     var switcherButton = document.getElementById("switcher");
     var wordsDatalist = document.getElementById("words");
-    var lwords = null,twords = null;
+    var infoDiv = document.getElementById("info");
+    var infoDisplayed = false;
+    var infoFL = null;
+    var lwords = null, twords = null;
     var searchText;
-    var lwordsCount = 0,twordsCount = 0;
+    var lwordsCount = 0, twordsCount = 0;
     var jsForDataList = false;
     // event handlers
     document.getElementById("searchButton").addEventListener("click", function(e){
@@ -82,7 +85,32 @@ function mainFunction (){
             insertWordsToDatalist(lwords,lwordsCount);
         }
     });
+    document.getElementById("bottomButtons").addEventListener("click", function(e){
+        if(e.target.id === "dinfoButton") displayInfo("d","../data/dictinfo.html");
+        else if(e.target.id === "sinfoButton") displayInfo("s","../data/softinfo.html");
+    });
     // functions
+    function displayInfo(FL,url){
+        if(!infoDisplayed){
+            infoDiv.setAttribute("style", "display:block;");
+            infoDisplayed = true;
+            makeHTTPRequest(url,function(res){
+                infoDiv.innerHTML = res;
+            });
+            infoFL = FL;
+        }
+        else if(infoDisplayed && infoFL !== FL){
+            makeHTTPRequest(url,function(res){
+                infoDiv.innerHTML = res;
+            });
+            infoFL = FL;
+        }
+        else if(infoDisplayed && infoFL === FL){
+            infoDiv.setAttribute("style", "display:none;");
+            infoDisplayed = false;
+            infoFL = FL;
+        }
+    }
     function handleTurkceWordList(responseText){
         twords = JSON.parse(responseText);
         if(twords===null || lwords.wordlist===null) console.log("can't parse twords");

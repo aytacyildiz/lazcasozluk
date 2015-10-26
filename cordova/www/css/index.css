@@ -119,11 +119,12 @@ body {
     margin: 0 2%;
 }
 
-#dinfo, #sinfo{
+#info{
     background: white;
     margin: 0;
     padding: 10px 8px;
     display: none;
+    overflow-wrap: break-word;
 }
 
 .button{
