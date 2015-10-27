@@ -174,7 +174,7 @@ function mainFunction (){
         definition.innerHTML += responseText + "<br>";
     }
     function makeHTTPRequest(URL, handler){
-        if(cordova.platformId==="android"){
+        if(cordova.platformId!=="browser"){
             console.log("Change path for platform ",cordova.platformId,URL.replace("../",""));
             URL = URL.replace("../","");
         }
