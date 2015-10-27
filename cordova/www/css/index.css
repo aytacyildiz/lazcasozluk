@@ -33,62 +33,36 @@ body {
     -moz-user-select: text;
     -ms-user-select: text;
     user-select: text;
-    font-family:'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
+    /*font-family:'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;*/
 }
 
-.app {
-    max-width: 800px;
-    padding: 4px 5px 0 5px;
+/* slow */
+* {
+    -webkit-tap-highlight-color: rgba(0,0,0,0); /* make transparent link selection, adjust last value opacity 0 to 1.0 */
+}
+
+.app{
+    max-width: 960px;
     margin: 0 auto;
 }
 
-/*
-    Head
-*/
-
-.letter{
-    width: 8%;
-    display: inline-block;
-    box-sizing: border-box;
-}
-
-#letterBar{
-    text-align: center;
-}
-
-#search{
-    font-size: 1.5em;
+.button{
+    padding: 1em;
     border: 0;
-    margin: 10px 0 10px 0;
-    padding: 0.8em 0.5em;
-    width: 100%;
-    display: block;
-    box-sizing: border-box;
+    /*border-bottom: 0.125em solid white; /*2/16em ~= 2px*/
+    color: white;
+    background-color: rgba(0,0,0,0);
 }
 
-#searchBar{
-    margin-bottom: 10px; 
-    text-align: center;
+.button:active{
+    background-color: white;
+    color: black;
 }
 
-.searchBarButton{
-    margin: 0 10%;
-    display: inline-block;
-    box-sizing: border-box;
-}
-
-#searchButton, #switcher{
-    padding: 1em 6%;
-}
-
-/*
-    Definition
-*/
-
-#definition{
+#info, #definition{
     background: white;
-    margin: 5px 0;
-    padding: 10px 8px;
+    overflow-wrap: break-word;
+    padding: 0.125em;
     display: none;
 }
 
@@ -101,46 +75,42 @@ body {
     margin-bottom: 2pt;
 }
 
-/*
-    Bottom
-*/
-
-#bottom{
-    margin: 200px 0 0 0;
+#search{
+    padding: 1em;
+    font-size: 1.3em;
 }
 
-#bottomButtons{
-    text-align: center;
+#searchButton{
+    font-weight: bold;
 }
 
 .infoButton{
-    font-size: 0.9em;
-    display: inline-block;
-    margin: 0 2%;
+    font-size: 0.8em;
 }
 
-#info{
-    background: white;
-    margin: 0;
-    padding: 10px 8px;
-    display: none;
-    overflow-wrap: break-word;
+#bottomButtons{
+    margin-top: 5em;
 }
+/*568px>*/
+@media screen and (min-width: 35.5em){
 
-.button{
-    padding: 1em;
-    border: 0;
-    border-bottom: 2px solid white;
-    color: white;
-    background-color: rgba(0,0,0,0);
 }
-
-.button:active{
-    background-color: white;
-    color: black;
+/*768px>*/
+@media screen and (min-width: 48em){
+    #info, #definition{
+        padding: 1em;
+    }
 }
+/*1024px>*/
+@media screen and (min-width: 64em){
+    #search{
+        margin-bottom: 1em;
+    }
+    #head{
+        margin-top: 2em;
+    }
+}
+/*1280px>*/
+@media screen and (min-width: 80em){
 
-/* slow */
-* {
-    -webkit-tap-highlight-color: rgba(0,0,0,0); /* make transparent link selection, adjust last value opacity 0 to 1.0 */
 }

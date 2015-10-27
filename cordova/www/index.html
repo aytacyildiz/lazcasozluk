@@ -28,43 +28,45 @@
             * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
                 * Enable inline JS: add 'unsafe-inline' to default-src
         -->
-        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">
+        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src 'self'">
         <meta name="format-detection" content="telephone=no">
         <meta name="msapplication-tap-highlight" content="no">
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
         <meta charset="UTF-8">
-        <link rel="stylesheet" type="text/css" href="css/normalize.css">
+        <link rel="stylesheet" type="text/css" href="css/pure-min.css">
         <link rel="stylesheet" type="text/css" href="css/index.css">
         <title>Lazca Sözlük</title>
     </head>
     <body>
-        <div class="app">
-            <div id="head">
+        <div class="app pure-g">
+            <div id="head" class="pure-u-1">
                 <!-- Support for datalist http://caniuse.com/#feat=datalist -->
-                <div id="letterBar">
-                    <input class="letter button" type="button" value="ç’">
-                    <input class="letter button" type="button" value="gy">
-                    <input class="letter button" type="button" value="k’">
-                    <input class="letter button" type="button" value="ky">
-                    <input class="letter button" type="button" value="ky’">
-                    <input class="letter button" type="button" value="p’">
-                    <input class="letter button" type="button" value="t’">
-                    <input class="letter button" type="button" value="x’">
-                    <input class="letter button" type="button" value="z*">
-                    <input class="letter button" type="button" value="3’">
+                <div id="letterBar" class="pure-g">
+                    <input class="letter button pure-u-1-5 pure-u-md-1-12" type="button" value="ç’">
+                    <input class="letter button pure-u-1-5 pure-u-md-1-12" type="button" value="gy">
+                    <input class="letter button pure-u-1-5 pure-u-md-1-12" type="button" value="k’">
+                    <input class="letter button pure-u-1-5 pure-u-md-1-12" type="button" value="ky">
+                    <input class="letter button pure-u-1-5 pure-u-md-1-12" type="button" value="ky’">
+                    <input class="letter button pure-u-1-5 pure-u-md-1-12" type="button" value="p’">
+                    <input class="letter button pure-u-1-5 pure-u-md-1-12" type="button" value="t’">
+                    <input class="letter button pure-u-1-5 pure-u-md-1-12" type="button" value="x’">
+                    <input class="letter button pure-u-1-5 pure-u-md-1-12" type="button" value="z*">
+                    <input class="letter button pure-u-1-5 pure-u-md-1-12" type="button" value="3’">
                 </div>
-                <input id="search" list="words" placeholder="Kelime...">
-                <datalist id="words" data-filter-reveal="true"></datalist>
-                <div id="searchBar">
-                    <input id="searchButton" class="searchBarButton button" type="button" value="KELİMEYİ ARA">
-                    <input id="switcher" class="searchBarButton button" type="button" value="Lazca-Türkçe">
+                <div class="pure-g">    
+                    <input id="search" list="words" class="pure-u-1" placeholder="Kelime...">
+                    <datalist id="words" data-filter-reveal="true"></datalist>
+                </div>
+                <div id="searchBar" class="pure-g">
+                    <input id="searchButton" class="searchBarButton button pure-u-1-2 pure-u-lg-1" type="button" value="KELİMEYİ ARA">
+                    <input id="switcher" class="searchBarButton button pure-u-1-2 pure-u-lg-1" type="button" value="Lazca-Türkçe">
                 </div>
             </div>
-            <div id="definition"></div>
-            <div id="bottom">
-                <div id="bottomButtons">
-                    <input id="dinfoButton" class="infoButton button" type="button" value="+ Sözlük Hakkında Bilgi">
-                    <input id="sinfoButton" class="infoButton button" type="button" value="+ Yazılım Hakkında Bilgi">
+            <div id="definition" class="pure-u-1"></div>
+            <div id="bottom" class="pure-u-1">
+                <div id="bottomButtons" class="pure-g">
+                    <input id="dinfoButton" class="infoButton button pure-u-1-2" type="button" value="+ Sözlük Hakkında Bilgi">
+                    <input id="sinfoButton" class="infoButton button pure-u-1-2" type="button" value="+ Yazılım Hakkında Bilgi">
                 </div>
                 <div id="info"></div>
             </div>
