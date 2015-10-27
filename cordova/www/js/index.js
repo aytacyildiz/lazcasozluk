@@ -174,6 +174,10 @@ function mainFunction (){
         definition.innerHTML += responseText + "<br>";
     }
     function makeHTTPRequest(URL, handler){
+        if(cordova.platformId==="android"){
+            console.log("Change path for platform ",cordova.platformId,URL.replace("../",""));
+            URL = URL.replace("../","");
+        }
         // https://developer.mozilla.org/en-US/docs/AJAX/Getting_Started
         var httpRequest = new XMLHttpRequest();
         if (!httpRequest) {
