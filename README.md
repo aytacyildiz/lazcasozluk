@@ -5,7 +5,7 @@ Bu ugulamadaki amacım http://ayla7.free.fr/laz/ adresindeki verileri kullanarak
 
 **Projenin şu anki çalışan hali:**
 
-![App Demo](media/appdemo.400.gif)
+![App Demo](media/appdemo.gif)
 
 Daha büyük boyuttaki: [video](media/appdemo.webm?raw=true)
 
